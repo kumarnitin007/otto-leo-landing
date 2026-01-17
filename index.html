@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Apps Family! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-bottom: 0.75rem;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1.25rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem 0.5rem 0 0.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.8125rem;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .content {
+            padding: 1.5rem;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 340px;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .app-icon {
+            font-size: 2.25rem;
+            line-height: 1;
+        }
+
+        .app-status {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 1rem;
+            font-weight: 600;
+        }
+
+        .status-live {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-beta {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-coming {
+            background: #dbeafe;
+            color: #1e3a8a;
+        }
+
+        .app-title {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.65rem;
+        }
+
+        .app-description {
+            color: #6b7280;
+            line-height: 1.5;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .app-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.3rem 0.65rem;
+            border-radius: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 0.65rem;
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.65rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .info-section {
+            margin-top: 2rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .intro h2 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .intro p {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .coming-soon-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .coming-card, .ideas-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid #fbbf24;
+        }
+
+        .ideas-section {
+            margin-bottom: 2rem;
+        }
+
+        .ideas-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #93c5fd;
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border: 2px solid #f9a8d4;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            text-align: center;
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-description {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            border-color: #f9a8d4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(249, 168, 212, 0.3);
+        }
+
+        .quiz-option.selected {
+            border-color: #ec4899;
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+        }
+
+        .quiz-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-label {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9375rem;
+        }
+
+        .quiz-result {
+            display: none;
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            border: 2px solid #ec4899;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .updates-ticker {
+            background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+            border: 2px solid #c084fc;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .updates-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: #581c87;
+            font-size: 1rem;
+        }
+
+        .updates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+
+        .update-badge {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #7c3aed;
+            white-space: nowrap;
+            min-width: 115px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .contact-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 1.25rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .contact-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1.25rem 1.25rem 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.9375rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .email-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .email-option-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .gmail-option {
+            background: linear-gradient(135deg, #ea4335 0%, #d33b2c 100%);
+            color: white;
+            border-color: #ea4335;
+        }
+
+        .gmail-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(234, 67, 53, 0.3);
+        }
+
+        .default-option {
+            background: white;
+            color: #667eea;
+            border-color: #667eea;
+        }
+
+        .default-option:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            border: 2px solid #fbbf24;
+        }
+
+        .highlight-box h3 {
+            color: #92400e;
+            font-size: 1.125rem;
+            margin-bottom: 0.65rem;
+            font-weight: 700;
+        }
+
+        .highlight-box p {
+            color: #374151;
+            line-height: 1.6;
+            font-size: 0.9375rem;
+        }
+
+        .footer {
+            background: #f9fafb;
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #764ba2;
+        }
+
+        /* Details Page Styles */
+        .details-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .details-page.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .details-content {
+            background: white;
+            border-radius: 1.25rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .details-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1.25rem 1.25rem 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .details-header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .details-icon {
+            font-size: 2.5rem;
+        }
+
+        .details-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .details-body {
+            padding: 1.5rem;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .feature-section {
+            margin-bottom: 1.25rem;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 2px solid #e5e7eb;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 0.875rem;
+        }
+
+        .launch-section {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 0.9375rem;
+            }
+
+            .intro h2 {
+                font-size: 1.25rem;
+            }
+
+            .intro p {
+                font-size: 0.9375rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .app-card {
+                min-height: auto;
+            }
+
+            .app-buttons {
+                flex-direction: column;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .coming-soon-section {
+                grid-template-columns: 1fr;
+            }
+
+            .ideas-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .coming-card h3, .ideas-card h3 {
+                font-size: 1.25rem;
+            }
+
+            .coming-card p, .ideas-card p {
+                font-size: 0.875rem;
+            }
+
+            .details-content {
+                margin: 1rem auto;
+            }
+
+            .details-header {
+                padding: 1rem;
+            }
+
+            .details-title {
+                font-size: 1.375rem;
+            }
+
+            .details-body {
+                padding: 1rem;
+            }
+
+            .launch-section {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .container {
+                border-radius: 1rem;
+            }
+
+            .header {
+                padding: 1.5rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.25rem;
+            }
+
+            .success-badge {
+                font-size: 0.75rem;
+                padding: 0.3rem 1rem;
+            }
+
+            .intro {
+                margin-bottom: 1.5rem;
+                padding-bottom: 1rem;
+            }
+
+            .intro h2 {
+                font-size: 1.125rem;
+            }
+
+            .intro p {
+                font-size: 0.875rem;
+                display: none; /* Hide detailed text on very small screens */
+            }
+
+            .app-icon {
+                font-size: 2rem;
+            }
+
+            .app-title {
+                font-size: 1.25rem;
+            }
+
+            .app-description {
+                font-size: 0.8125rem;
+            }
+
+            .feature-tag {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .coming-card, .ideas-card {
+                padding: 1.25rem;
+            }
+
+            .coming-card h3, .ideas-card h3 {
+                font-size: 1.125rem;
+            }
+
+            .coming-card p, .ideas-card p {
+                font-size: 0.8125rem;
+            }
+
+            .coming-card div[style*="font-size: 3rem"] span, 
+            .ideas-card div[style*="font-size: 3rem"] span {
+                font-size: 2.5rem !important;
+            }
+
+            #support-modal .details-body div[style*="font-size: 3rem"] span {
+                font-size: 2.25rem !important;
+            }
+
+            .highlight-box {
+                padding: 1rem;
+            }
+
+            .highlight-box h3 {
+                font-size: 1rem;
+            }
+
+            .highlight-box p {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <span style="font-size: 2.5rem; line-height: 1;">🦁</span>
+                <span style="font-size: 2.5rem; line-height: 1;">📚</span>
+                <span style="font-size: 2.5rem; line-height: 1;">🦦</span>
+                <span style="font-size: 2.5rem; line-height: 1;">🤝</span>
+                <span style="font-size: 2.5rem; line-height: 1;">📈</span>
+            </div>
+            <h1>🎉 Welcome to Your Apps Family!</h1>
+            <p>Your email has been verified successfully</p>
+            <div class="success-badge">✓ Account Activated</div>
+            
+            <!-- Quick Stats -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Apps Live</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free & Ad-Free</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Intro Section at Top -->
+            <div class="intro">
+                <h2>Choose Your Productivity Tool</h2>
+                <p>Access your personal suite of productivity apps. All apps share the same account - just pick the one that fits your current needs!</p>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="quiz-section">
+                <div class="quiz-icon" style="text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem;">🤔</div>
+                <h3 class="quiz-title">Not Sure Where to Start?</h3>
+                <p class="quiz-description">Tell us what you're looking for and we'll recommend the perfect app!</p>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" data-app="leo">
+                        <div class="quiz-icon">📅</div>
+                        <div class="quiz-label">Organize My Day</div>
+                    </div>
+                    <div class="quiz-option" data-app="bookshelf">
+                        <div class="quiz-icon">📚</div>
+                        <div class="quiz-label">Track My Reading</div>
+                    </div>
+                    <div class="quiz-option" data-app="cipher">
+                        <div class="quiz-icon">🧠</div>
+                        <div class="quiz-label">Learn & Challenge</div>
+                    </div>
+                    <div class="quiz-option" data-app="helper">
+                        <div class="quiz-icon">❤️</div>
+                        <div class="quiz-label">Give Back</div>
+                    </div>
+                    <div class="quiz-option" data-app="mytrades">
+                        <div class="quiz-icon">📈</div>
+                        <div class="quiz-label">Track Investments</div>
+                    </div>
+                </div>
+
+                <div id="quiz-result" class="quiz-result">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span id="result-icon" style="font-size: 2.5rem;"></span>
+                        <div style="flex: 1;">
+                            <h4 id="result-title" style="font-size: 1.125rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem;"></h4>
+                            <p id="result-description" style="font-size: 0.875rem; color: #6b7280; margin: 0;"></p>
+                        </div>
+                    </div>
+                    <a id="result-link" href="#" class="btn btn-primary" style="width: 100%;">Launch App →</a>
+                </div>
+            </div>
+
+            <!-- Apps Grid -->
+            <div class="apps-grid">
+                <!-- Leo Planner -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">🦁</div>
+                        <div class="app-status status-live">Live</div>
+                    </div>
+                    <h3 class="app-title">Leo Planner</h3>
+                    <p class="app-description">
+                        Your daily task manager and productivity companion! Track tasks with streaks, get AI-powered coaching, manage events and journals, use focus timers, and stay organized with the strength and precision of a lion!
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag">📅 Task Manager</span>
+                        <span class="feature-tag">⏱️ Focus Timer</span>
+                        <span class="feature-tag">📊 Analytics</span>
+                        <span class="feature-tag">📓 Journal</span>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-secondary" onclick="showDetails('leo'); return false;">Details</a>
+                        <a href="https://leo-planner.vercel.app/" class="btn btn-primary">Launch →</a>
+                    </div>
+                </div>
+
+                <!-- Bookshelf -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">📚</div>
+                        <div class="app-status status-live">Live</div>
+                    </div>
+                    <h3 class="app-title">Bookshelf</h3>
+                    <p class="app-description">
+                        Your personal reading tracker and library organizer! Keep track of books you've read, want to read, and get personalized AI recommendations. Organize your collection with themed bookshelves and track reading stats!
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag">📖 Reading Tracker</span>
+                        <span class="feature-tag">🤖 AI Recommendations</span>
+                        <span class="feature-tag">📊 Stats & XP</span>
+                        <span class="feature-tag">🏆 Achievements</span>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-secondary" onclick="showDetails('bookshelf'); return false;">Details</a>
+                        <a href="https://mybooksshelf.vercel.app/" class="btn btn-primary">Launch →</a>
+                    </div>
+                </div>
+
+                <!-- Cipher Otto -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">🦦</div>
+                        <div class="app-status status-live">Live</div>
+                    </div>
+                    <h3 class="app-title">Cipher Otto</h3>
+                    <p class="app-description">
+                        Your interactive cryptography learning platform! Learn, practice, and master various ciphers with Otto's guidance. Explore historical ciphers, solve challenges, and track your progress!
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag">🔐 Learn Ciphers</span>
+                        <span class="feature-tag">🎯 Challenges</span>
+                        <span class="feature-tag">📈 Progress Tracking</span>
+                        <span class="feature-tag">👥 Community</span>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-secondary" onclick="showDetails('cipher'); return false;">Details</a>
+                        <a href="https://cipher-otto2.vercel.app/" class="btn btn-primary">Launch →</a>
+                    </div>
+                </div>
+
+                <!-- Helper Otto -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">🤝</div>
+                        <div class="app-status status-beta">Beta</div>
+                    </div>
+                    <h3 class="app-title">Helper Otto</h3>
+                    <p class="app-description">
+                        Find meaningful volunteer opportunities in your community! Connect with local organizations, discover causes you care about, and make a real difference. Track your volunteer hours and impact!
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag">🌍 Find Opportunities</span>
+                        <span class="feature-tag">❤️ Track Impact</span>
+                        <span class="feature-tag">🏅 Volunteer Hours</span>
+                        <span class="feature-tag">🤲 Give Back</span>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-secondary" onclick="showDetails('helper'); return false;">Details</a>
+                        <a href="https://helperotto.vercel.app/" class="btn btn-primary">Launch →</a>
+                    </div>
+                </div>
+
+                <!-- More Apps Coming Card -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">📈</div>
+                        <div class="app-status status-coming">Coming Soon</div>
+                    </div>
+                    <h3 class="app-title">MyTrades</h3>
+                    <p class="app-description">
+                        Your unified investment tracker! Connect Robinhood, Fidelity, and Empower accounts. View combined portfolio performance, track gains/losses across platforms, and get insights all in one place!
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag">📊 Multi-Platform</span>
+                        <span class="feature-tag">💰 P&L Tracking</span>
+                        <span class="feature-tag">📈 Analytics</span>
+                        <span class="feature-tag">🔗 Auto-Sync</span>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-secondary" onclick="showDetails('mytrades'); return false;">Details</a>
+                        <button class="btn btn-disabled">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ideas Section -->
+            <div class="ideas-section">
+                <div class="ideas-card">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <span style="font-size: 3rem;">💡</span>
+                    </div>
+                    <h3 style="font-size: 1.375rem; font-weight: 700; color: #1f2937; margin-bottom: 0.75rem; text-align: center;">Have an App Idea?</h3>
+                    <p style="color: #6b7280; line-height: 1.6; font-size: 0.9375rem; text-align: center; margin-bottom: 1.25rem;">
+                        We'd love to hear your suggestions! Share your ideas for new apps or features you'd like to see in our family.
+                    </p>
+                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <a href="#" onclick="openContactModal('idea'); return false;" class="btn btn-primary" style="flex: 1; min-width: 200px;">
+                            📧 Send Your Idea
+                        </a>
+                        <a href="#" onclick="openContactModal('feature'); return false;" class="btn btn-secondary" style="flex: 1; min-width: 200px;">
+                            ✨ Request Feature
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <div class="highlight-box">
+                    <h3>🔐 One Account, Multiple Apps</h3>
+                    <p>Your verified email gives you access to all apps in our family. No need to sign up again - just click and start using any app!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Need help? Have questions? We're here for you!</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="showSupport(); return false;">📧 Contact Support</a>
+                <a href="#" class="footer-link" onclick="openContactModal('general'); return false;">✉️ Email Us</a>
+                <a href="#" class="footer-link">💬 Community</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Support Modal -->
+    <div id="support-modal" class="details-page">
+        <div class="details-content" style="max-width: 600px;">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">💚</span>
+                    <h2 class="details-title">Support Our Apps</h2>
+                </div>
+                <button class="close-btn" onclick="closeSupport()">✕</button>
+            </div>
+            <div class="details-body">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span style="font-size: 3rem; line-height: 1;">🦁</span>
+                        <span style="font-size: 3rem; line-height: 1;">📚</span>
+                        <span style="font-size: 3rem; line-height: 1;">🦦</span>
+                        <span style="font-size: 3rem; line-height: 1;">🤝</span>
+                    </div>
+                    <p style="font-size: 1rem; color: #374151; line-height: 1.6; margin: 0;">
+                        Help keep these apps free, ad-free, and running strong! Your support helps us continue building great features and new apps for everyone! 🌺
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+                    <a href="https://venmo.com/Nitin-Kumar-22" target="_blank" rel="noopener noreferrer" 
+                       style="padding: 1rem; borderRadius: 0.75rem; background: linear-gradient(to right, #3b82f6, #06b6d4); color: white; fontWeight: bold; textAlign: center; textDecoration: none; display: block; fontSize: 1rem; border-radius: 0.75rem;">
+                        ☕ Donate via Venmo
+                    </a>
+                    <a href="https://paypal.me/kumarnitin007" target="_blank" rel="noopener noreferrer" 
+                       style="padding: 1rem; borderRadius: 0.75rem; background: linear-gradient(to right, #eab308, #f97316); color: white; fontWeight: bold; textAlign: center; textDecoration: none; display: block; fontSize: 1rem; border-radius: 0.75rem;">
+                        💵 Donate via PayPal
+                    </a>
+                </div>
+
+                <div style="background: linear-gradient(to right, #f0fdfa, #ccfbf1); border-radius: 0.75rem; padding: 1.25rem; border: 2px solid #5eead4; text-align: center;">
+                    <p style="color: #0f766e; font-size: 0.9375rem; line-height: 1.6; margin: 0;">
+                        <strong>Thank you for your support!</strong><br>
+                        Every contribution helps us maintain servers, add new features, and build more amazing apps for you to enjoy! 🙏
+                    </p>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                    <p style="color: #6b7280; font-size: 0.875rem; text-align: center; margin-bottom: 0.75rem;">
+                        Have questions or need help?
+                    </p>
+                    <a href="#" onclick="closeSupport(); openContactModal('support'); return false;" class="btn btn-secondary" style="width: 100%;">
+                        📧 Email Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-form">
+            <div class="contact-header">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span style="font-size: 1.75rem;">💌</span>
+                    <h2 style="font-size: 1.5rem; font-weight: 800; margin: 0;">Get in Touch</h2>
+                </div>
+                <button class="close-btn" onclick="closeContactModal()">✕</button>
+            </div>
+            <div class="contact-body">
+                <p style="color: #6b7280; margin-bottom: 1.5rem; text-align: center; font-size: 0.9375rem;">
+                    Choose how you'd like to contact us:
+                </p>
+                
+                <div class="email-options">
+                    <a href="#" id="gmail-link" class="email-option-btn gmail-option" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.548l8.073-6.055C21.69 2.28 24 3.434 24 5.457z"/>
+                        </svg>
+                        <span>Open in Gmail</span>
+                    </a>
+                    
+                    <a href="#" id="mailto-link" class="email-option-btn default-option">
+                        <span>📧</span>
+                        <span>Open in Default Email App</span>
+                    </a>
+                    
+                    <button onclick="copyEmail()" class="email-option-btn default-option" style="cursor: pointer; background: white;">
+                        <span>📋</span>
+                        <span id="copy-text">Copy Email Address</span>
+                    </button>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; text-align: center;">
+                    <p style="color: #6b7280; font-size: 0.875rem; margin: 0;">
+                        <strong>Email:</strong> leoplannerapp@gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Pages -->
+    <div id="details-leo" class="details-page">
+        <div class="details-content">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">🦁</span>
+                    <h2 class="details-title">Leo Planner</h2>
+                </div>
+                <button class="close-btn" onclick="closeDetails('leo')">✕</button>
+            </div>
+            <div class="details-body">
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fbcfe8); border-color: #f9a8d4;">
+                    <p class="feature-title">🎯 Today's Smart Dashboard</p>
+                    <p class="feature-description">See all your tasks at a glance with three visual layouts (Uniform, Priority-Sized, Masonry). Track progress, streaks, and get AI-powered coaching on underperforming tasks!</p>
+                    <div style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(255,255,255,0.5); border-radius: 0.5rem; text-align: center;">
+                        <img src="https://via.placeholder.com/600x300/fce7f3/ec4899?text=Smart+Dashboard+Preview" alt="Dashboard Preview" style="width: 100%; border-radius: 0.375rem; border: 1px solid #f9a8d4;">
+                    </div>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #ddd6fe, #c4b5fd); border-color: #a78bfa;">
+                    <p class="feature-title">📊 Analytics & Insights</p>
+                    <p class="feature-description">Daily history with habit tracking grid, monthly calendar view, and deep insights with performance analysis, time patterns, and trend predictions!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fed7aa, #fbbf24); border-color: #f59e0b;">
+                    <p class="feature-title">⏱️ Focus Timer & Countdown</p>
+                    <p class="feature-description">Full-screen countdown timer with three modes: countdown to task end time, custom duration timer, or standalone stopwatch. Auto-completes tasks when timer ends!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #a7f3d0, #6ee7b7); border-color: #34d399;">
+                    <p class="feature-title">📅 Events & Occasions</p>
+                    <p class="feature-description">Track birthdays, anniversaries, memorials, holidays, and festivals. Import events from Google Calendar (.ics files). Auto-notifications before important dates!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #bfdbfe, #93c5fd); border-color: #60a5fa;">
+                    <p class="feature-title">📓 Daily Journal</p>
+                    <p class="feature-description">Free-form daily notes with mood tracking and custom tags. Tag tracking analytics show monthly trends (track habits like "late night sleep" or "social meetings")!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fda4af); border-color: #fb7185;">
+                    <p class="feature-title">🎯 Task Templates & Routines</p>
+                    <p class="feature-description">Pre-defined and user-creatable routines (Morning, Evening, Workout). Define time windows and quickly add entire routine sets to your day!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #e0e7ff, #c7d2fe); border-color: #a5b4fc;">
+                    <p class="feature-title">🔄 Advanced Task Scheduling</p>
+                    <p class="feature-description">Daily, weekly, monthly, custom frequencies (every 3 days, every 2 months), interval-based (every X days/weeks/months/years), one-time tasks, and date-range tasks!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fef3c7, #fde68a); border-color: #fcd34d;">
+                    <p class="feature-title">🏷️ Tags & Categories</p>
+                    <p class="feature-description">Create trackable tags with descriptions. Use in journal entries to auto-count patterns. Filter tasks by tags and see analytics!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #cffafe, #a5f3fc); border-color: #67e8f9;">
+                    <p class="feature-title">🎨 10 Beautiful Themes</p>
+                    <p class="feature-description">Mint Fresh, Purple Dream, Ocean Breeze, Sunset Glow, Forest Green, Cherry Blossom, Golden Hour, Midnight Blue, Lavender Fields, Autumn Leaves. Instant theme switching!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fecaca, #fca5a5); border-color: #f87171;">
+                    <p class="feature-title">🎭 50+ Avatars</p>
+                    <p class="feature-description">Personalize with emoji avatars across 6 categories: Smileys, Animals, Food, Activities, Travel, Objects. Your avatar shows everywhere!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #d1fae5, #a7f3d0); border-color: #6ee7b7;">
+                    <p class="feature-title">📌 Integration Hub</p>
+                    <p class="feature-description">Import/export tasks from Google Calendar (.ics), connect with Google Tasks, Apple Reminders, Todoist. Sync your productivity ecosystem!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #e9d5ff, #d8b4fe); border-color: #c084fc;">
+                    <p class="feature-title">📱 Progressive Web App (PWA)</p>
+                    <p class="feature-description">Install to home screen on any device! Works offline, desktop and mobile optimized, fast loading, and native app-like experience!</p>
+                </div>
+            </div>
+            <div class="launch-section">
+                <a href="https://leo-planner.vercel.app/" class="btn btn-primary" style="flex: 1;">Launch Leo Planner →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-bookshelf" class="details-page">
+        <div class="details-content">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">📚</span>
+                    <h2 class="details-title">Bookshelf</h2>
+                </div>
+                <button class="close-btn" onclick="closeDetails('bookshelf')">✕</button>
+            </div>
+            <div class="details-body">
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fbcfe8); border-color: #f9a8d4;">
+                    <p class="feature-title">📖 Reading Tracker</p>
+                    <p class="feature-description">Keep track of books you've read, currently reading, and want to read. Monitor your reading progress with detailed stats and milestones!</p>
+                    <div style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(255,255,255,0.5); border-radius: 0.5rem; text-align: center;">
+                        <img src="https://via.placeholder.com/600x300/fce7f3/ec4899?text=Reading+Tracker+Preview" alt="Reading Tracker" style="width: 100%; border-radius: 0.375rem; border: 1px solid #f9a8d4;">
+                    </div>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #ddd6fe, #c4b5fd); border-color: #a78bfa;">
+                    <p class="feature-title">🤖 AI-Powered Recommendations</p>
+                    <p class="feature-description">Get personalized book suggestions based on your reading history and preferences. Discover new authors and genres tailored just for you!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fed7aa, #fbbf24); border-color: #f59e0b;">
+                    <p class="feature-title">📚 Themed Bookshelves</p>
+                    <p class="feature-description">Organize your collection with custom bookshelves. Create themed collections like "Summer Reads", "Classics", "Mystery Thrillers" and more!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #a7f3d0, #6ee7b7); border-color: #34d399;">
+                    <p class="feature-title">📊 Reading Statistics & XP</p>
+                    <p class="feature-description">Track pages read, books completed, reading streaks, and earn XP for your reading achievements. Level up as you read more!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #bfdbfe, #93c5fd); border-color: #60a5fa;">
+                    <p class="feature-title">🏆 Achievements & Badges</p>
+                    <p class="feature-description">Unlock achievements for reading milestones. Collect badges for completing challenges and exploring different genres!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fda4af); border-color: #fb7185;">
+                    <p class="feature-title">👥 Share with Friends</p>
+                    <p class="feature-description">Share your favorite books with friends, see what they're reading, and exchange recommendations within the app!</p>
+                </div>
+            </div>
+            <div class="launch-section">
+                <a href="https://mybooksshelf.vercel.app/" class="btn btn-primary" style="flex: 1;">Launch Bookshelf →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-cipher" class="details-page">
+        <div class="details-content">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">🦦</span>
+                    <h2 class="details-title">Cipher Otto</h2>
+                </div>
+                <button class="close-btn" onclick="closeDetails('cipher')">✕</button>
+            </div>
+            <div class="details-body">
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fbcfe8); border-color: #f9a8d4;">
+                    <p class="feature-title">🔐 Learn Classical Ciphers</p>
+                    <p class="feature-description">Master historical encryption techniques including Caesar, Vigenère, Playfair, Rail Fence, and more. Learn the theory and practice behind each cipher!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #ddd6fe, #c4b5fd); border-color: #a78bfa;">
+                    <p class="feature-title">🎯 Interactive Challenges</p>
+                    <p class="feature-description">Test your skills with encryption and decryption challenges. Solve puzzles, crack codes, and compete with other cryptography enthusiasts!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fed7aa, #fbbf24); border-color: #f59e0b;">
+                    <p class="feature-title">📈 Track Your Progress</p>
+                    <p class="feature-description">Monitor your learning journey with detailed progress tracking. See which ciphers you've mastered and what challenges you've completed!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #a7f3d0, #6ee7b7); border-color: #34d399;">
+                    <p class="feature-title">🦦 Otto's Guidance</p>
+                    <p class="feature-description">Learn with Otto, your friendly cryptography guide! Get hints, explanations, and step-by-step tutorials for each cipher technique!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #bfdbfe, #93c5fd); border-color: #60a5fa;">
+                    <p class="feature-title">👥 Community Features</p>
+                    <p class="feature-description">Join a community of cryptography learners. Share your solutions, discuss techniques, and collaborate on complex challenges!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fda4af); border-color: #fb7185;">
+                    <p class="feature-title">📚 Comprehensive Library</p>
+                    <p class="feature-description">Access a complete library of cipher documentation, historical context, and real-world applications of cryptography!</p>
+                </div>
+            </div>
+            <div class="launch-section">
+                <a href="https://cipher-otto2.vercel.app/" class="btn btn-primary" style="flex: 2;">Stable Version →</a>
+                <a href="https://cipher-otto.vercel.app/" class="btn btn-secondary" style="flex: 1;">Beta</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-helper" class="details-page">
+        <div class="details-content">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">🤝</span>
+                    <h2 class="details-title">Helper Otto</h2>
+                </div>
+                <button class="close-btn" onclick="closeDetails('helper')">✕</button>
+            </div>
+            <div class="details-body">
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fbcfe8); border-color: #f9a8d4;">
+                    <p class="feature-title">🌍 Discover Opportunities</p>
+                    <p class="feature-description">Find meaningful volunteer opportunities in your local community. Browse organizations by cause, location, and time commitment!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #ddd6fe, #c4b5fd); border-color: #a78bfa;">
+                    <p class="feature-title">❤️ Track Your Impact</p>
+                    <p class="feature-description">See the difference you're making! Track volunteer hours, events attended, and the communities you've helped!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fed7aa, #fbbf24); border-color: #f59e0b;">
+                    <p class="feature-title">🏅 Volunteer Hours Log</p>
+                    <p class="feature-description">Keep a detailed record of your volunteer work. Perfect for school requirements, job applications, and personal achievement tracking!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #a7f3d0, #6ee7b7); border-color: #34d399;">
+                    <p class="feature-title">🔍 Smart Matching</p>
+                    <p class="feature-description">Get personalized recommendations for volunteer opportunities based on your interests, skills, and availability!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #bfdbfe, #93c5fd); border-color: #60a5fa;">
+                    <p class="feature-title">🤲 Connect with Organizations</p>
+                    <p class="feature-description">Directly connect with local nonprofits and community organizations. Schedule volunteer shifts and stay updated on events!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fda4af); border-color: #fb7185;">
+                    <p class="feature-title">📊 Impact Dashboard</p>
+                    <p class="feature-description">Visualize your volunteer journey with stats, achievements, and milestones. Share your impact with friends and inspire others!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fef3c7, #fde68a); border-color: #fcd34d;">
+                    <p class="feature-title">🚀 Beta Features</p>
+                    <p class="feature-description">This app is in active development! New features are being added regularly based on community feedback. Help shape the future of volunteer matching!</p>
+                </div>
+            </div>
+            <div class="launch-section">
+                <a href="https://helperotto.vercel.app/" class="btn btn-primary" style="flex: 1;">Launch Helper Otto (Beta) →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-mytrades" class="details-page">
+        <div class="details-content">
+            <div class="details-header">
+                <div class="details-header-content">
+                    <span class="details-icon">📈</span>
+                    <h2 class="details-title">MyTrades</h2>
+                </div>
+                <button class="close-btn" onclick="closeDetails('mytrades')">✕</button>
+            </div>
+            <div class="details-body">
+                <div style="background: linear-gradient(to right, #fef3c7, #fde68a); border-radius: 0.75rem; padding: 1.25rem; border: 2px solid #fbbf24; margin-bottom: 1.25rem; text-align: center;">
+                    <p style="font-size: 2.5rem; margin-bottom: 0.5rem;">📈</p>
+                    <p style="font-weight: 700; font-size: 1.125rem; color: #92400e; margin-bottom: 0.5rem;">Coming Soon!</p>
+                    <p style="color: #374151; font-size: 0.875rem; margin: 0;">We're working hard to bring you the ultimate investment tracking experience. Stay tuned!</p>
+                </div>
+
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fbcfe8); border-color: #f9a8d4;">
+                    <p class="feature-title">🔗 Multi-Platform Integration</p>
+                    <p class="feature-description">Connect your Robinhood, Fidelity, and Empower accounts seamlessly. All your investments in one unified dashboard!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #ddd6fe, #c4b5fd); border-color: #a78bfa;">
+                    <p class="feature-title">💰 Combined P&L Tracking</p>
+                    <p class="feature-description">View your total gains and losses across all platforms. See your complete investment performance at a glance with real-time updates!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fed7aa, #fbbf24); border-color: #f59e0b;">
+                    <p class="feature-title">📊 Portfolio Analytics</p>
+                    <p class="feature-description">Deep insights into your investment performance. Track asset allocation, sector distribution, historical trends, and performance metrics!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #a7f3d0, #6ee7b7); border-color: #34d399;">
+                    <p class="feature-title">🔄 Auto-Sync & Updates</p>
+                    <p class="feature-description">Automatic synchronization with all your brokerage accounts. Real-time portfolio updates without manual data entry!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #bfdbfe, #93c5fd); border-color: #60a5fa;">
+                    <p class="feature-title">📈 Performance Insights</p>
+                    <p class="feature-description">Compare your returns against market benchmarks. Identify winning and losing positions, track dividend income, and analyze your investment strategy!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #fce7f3, #fda4af); border-color: #fb7185;">
+                    <p class="feature-title">📱 Mobile & Desktop</p>
+                    <p class="feature-description">Access your portfolio anywhere with our Progressive Web App. Full functionality on desktop, tablet, and mobile devices!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #e0e7ff, #c7d2fe); border-color: #a5b4fc;">
+                    <p class="feature-title">🔐 Bank-Level Security</p>
+                    <p class="feature-description">Your financial data is encrypted and secure. Read-only access to brokerage accounts ensures maximum safety!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #cffafe, #a5f3fc); border-color: #67e8f9;">
+                    <p class="feature-title">📅 Historical Tracking</p>
+                    <p class="feature-description">View your portfolio evolution over time. Track your net worth growth, analyze past trades, and learn from your investment history!</p>
+                </div>
+                <div class="feature-section" style="background: linear-gradient(to right, #d1fae5, #a7f3d0); border-color: #6ee7b7;">
+                    <p class="feature-title">🎯 Tax Optimization</p>
+                    <p class="feature-description">Tax-loss harvesting suggestions, capital gains tracking, and year-end tax planning tools to optimize your returns!</p>
+                </div>
+            </div>
+            <div class="launch-section">
+                <button class="btn btn-disabled" style="flex: 1;">Coming Soon - Stay Tuned!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth entrance animation to cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.app-card');
+            cards.forEach((card, index) => {
+                card.style.animation = `slideUp 0.6s ease-out ${index * 0.1}s both`;
+            });
+
+            // Setup quiz options
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    selectQuizOption(this, this.getAttribute('data-app'));
+                });
+            });
+        });
+
+        function showDetails(app) {
+            const detailsElement = document.getElementById('details-' + app);
+            if (detailsElement) {
+                detailsElement.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                console.error('Details page not found for:', app);
+            }
+        }
+
+        function closeDetails(app) {
+            const detailsElement = document.getElementById('details-' + app);
+            if (detailsElement) {
+                detailsElement.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function showSupport() {
+            document.getElementById('support-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSupport() {
+            document.getElementById('support-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openContactModal(type) {
+            const modal = document.getElementById('contact-modal');
+            const gmailLink = document.getElementById('gmail-link');
+            const mailtoLink = document.getElementById('mailto-link');
+            
+            let subject = 'General Inquiry';
+            if (type === 'idea') subject = 'App Idea Suggestion';
+            else if (type === 'feature') subject = 'Feature Request';
+            else if (type === 'support') subject = 'Support Request';
+            
+            const email = 'leoplannerapp@gmail.com';
+            const encodedSubject = encodeURIComponent(subject);
+            
+            // Gmail link
+            gmailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodedSubject}`;
+            
+            // Mailto link
+            mailtoLink.href = `mailto:${email}?subject=${encodedSubject}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyEmail() {
+            const email = 'leoplannerapp@gmail.com';
+            const copyText = document.getElementById('copy-text');
+            
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = copyText.textContent;
+                copyText.textContent = '✓ Email Copied!';
+                copyText.style.color = '#059669';
+                
+                setTimeout(() => {
+                    copyText.textContent = originalText;
+                    copyText.style.color = '';
+                }, 2000);
+            }).catch(() => {
+                alert('Email: leoplannerapp@gmail.com');
+            });
+        }
+
+        function selectQuizOption(element, appType) {
+            // Remove selected class from all options
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Show result
+            const resultDiv = document.getElementById('quiz-result');
+            const resultIcon = document.getElementById('result-icon');
+            const resultTitle = document.getElementById('result-title');
+            const resultDescription = document.getElementById('result-description');
+            const resultLink = document.getElementById('result-link');
+            
+            const apps = {
+                'leo': {
+                    icon: '🦁',
+                    title: 'Leo Planner',
+                    description: 'Perfect for organizing your day! Track tasks, manage events, and stay productive with AI-powered coaching.',
+                    link: 'https://leo-planner.vercel.app/'
+                },
+                'bookshelf': {
+                    icon: '📚',
+                    title: 'Bookshelf',
+                    description: 'Your reading companion! Track books, get AI recommendations, and earn achievements for your reading journey.',
+                    link: 'https://mybooksshelf.vercel.app/'
+                },
+                'cipher': {
+                    icon: '🦦',
+                    title: 'Cipher Otto',
+                    description: 'Master cryptography! Learn classical ciphers, solve challenges, and join a community of code enthusiasts.',
+                    link: 'https://cipher-otto2.vercel.app/'
+                },
+                'helper': {
+                    icon: '🤝',
+                    title: 'Helper Otto',
+                    description: 'Make a difference! Find volunteer opportunities, track your impact, and give back to your community.',
+                    link: 'https://helperotto.vercel.app/'
+                },
+                'mytrades': {
+                    icon: '📈',
+                    title: 'MyTrades',
+                    description: 'Track all your investments in one place! Connect Robinhood, Fidelity, and Empower for unified P&L tracking.',
+                    link: '#'
+                }
+            };
+            
+            const app = apps[appType];
+            if (!app) {
+                console.error('App type not found:', appType);
+                return;
+            }
+            
+            resultIcon.textContent = app.icon;
+            resultTitle.textContent = app.title;
+            resultDescription.textContent = app.description;
+            resultLink.href = app.link;
+            
+            // Disable link for coming soon apps
+            if (appType === 'mytrades') {
+                resultLink.classList.add('btn-disabled');
+                resultLink.style.pointerEvents = 'none';
+                resultLink.innerHTML = 'Coming Soon';
+            } else {
+                resultLink.classList.remove('btn-disabled');
+                resultLink.style.pointerEvents = 'auto';
+                resultLink.innerHTML = 'Launch App →';
+            }
+            
+            resultDiv.classList.add('show');
+            
+            // Smooth scroll to result
+            setTimeout(() => {
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // Close details when clicking outside
+        document.querySelectorAll('.details-page').forEach(page => {
+            page.addEventListener('click', (e) => {
+                if (e.target === page) {
+                    page.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close contact modal when clicking outside
+        const contactModal = document.getElementById('contact-modal');
+        if (contactModal) {
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) {
+                    closeContactModal();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

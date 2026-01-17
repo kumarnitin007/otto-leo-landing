@@ -1,0 +1,17 @@
+{
+  "name": "apps-family-landing",
+  "version": "1.0.0",
+  "description": "Landing page for Apps Family - Leo Planner, Bookshelf, Cipher Otto, Helper Otto, MyTrades",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'Open index.html in browser'",
+    "build": "echo 'No build needed - static HTML'"
+  },
+  "keywords": [
+    "landing-page",
+    "apps",
+    "supabase"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
